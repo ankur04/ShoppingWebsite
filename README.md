@@ -1,3 +1,4 @@
 # ShoppingWebsite
-Online 
-Shopping website build using React
+ 
+
+website build using React
