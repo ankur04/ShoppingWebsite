@@ -74,7 +74,7 @@ class SignIn extends React.Component {
               type="password"
               ref={this.passwordInput}
               readOnly={this.state.disablePassword}
-              onFocus={setTimeout(this.handleOnFocusPassword, 0)}
+              onFocus={setTimeout(this.handleOnFocusPassword, 5000)}
               onBlur={this.handleOnBlurPassword}
               value={this.state.password}
               onChange={this.handleChange}
