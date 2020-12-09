@@ -20,11 +20,10 @@ class SignIn extends React.Component {
     };
   }
 
-  handleOnFocusPassword = (target) => {
+  handleOnFocusPassword = () => {
     this.setState({
       disablePassword: false,
     });
-    target.setSelectionRange(0, 9999);
   };
 
   handleOnBlurPassword = () => {
@@ -73,23 +72,15 @@ class SignIn extends React.Component {
               className="form-input"
               name="password"
               type="password"
-              ref={this.passwordInput}
               readOnly={this.state.disablePassword}
-              onFocus={(event) => {
-                const target = event.target;
-                setTimeout(() => {
-                  this.setState({
-                    disablePassword: false,
-                  });
-                  target.setSelectionRange(0, 9999);
-                }, 0);
-              }}
+              onFocus={(event) => setTimeout(this.handleOnFocusPassword, 0)}
               onBlur={this.handleOnBlurPassword}
               value={this.state.password}
               onChange={this.handleChange}
               label="password"
               required
             />
+
             {"Password" ? (
               <label
                 className={`${
