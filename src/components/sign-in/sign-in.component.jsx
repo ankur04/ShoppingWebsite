@@ -15,21 +15,43 @@ class SignIn extends React.Component {
     this.state = {
       email: "",
       password: "",
-      passvalue: "",
-      disablePassword: "readonly",
+      blurFocus: "",
+      disablePassword: true,
     };
   }
 
   handleOnFocusPassword = () => {
-    this.textInput.current.readOnly = "";
-    this.setState({
-      disablePassword: "",
-    });
+    console.log("focus called");
+    if (this.state.blurFocus === "blur") {
+      return;
+    }
+    if (this.state.disablePassword == false) {
+      return;
+    }
+    this.setState(
+      {
+        disablePassword: false,
+        blurFocus: "focus",
+      },
+      () => {
+        this.textInput.current.blur();
+        this.textInput.current.readOnly = false;
+        this.textInput.current.focus();
+      }
+    );
   };
 
   handleOnBlurPassword = () => {
+    console.log("blur called");
+    if (this.state.blurFocus === "focus") {
+      return;
+    }
+    if (this.state.disablePassword == true) {
+      return;
+    }
     this.setState({
-      disablePassword: "readonly",
+      disablePassword: true,
+      blurFocus: "blur",
     });
   };
 
@@ -89,7 +111,7 @@ class SignIn extends React.Component {
                   this.state.password.length ? "shrink" : ""
                 } form-input-label`}
               >
-                {"PasswordReadOnly01"}
+                {"passwordBlur"}
               </label>
             ) : null}
           </div>
