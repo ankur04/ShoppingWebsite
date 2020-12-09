@@ -16,22 +16,20 @@ class SignIn extends React.Component {
       email: "",
       password: "",
       passvalue: "",
-      disablePassword: true,
+      disablePassword: "readonly",
     };
   }
 
   handleOnFocusPassword = () => {
-    this.textInput.current.focus();
-    this.textInput.current.ignoreReadOnly = true;
+    this.textInput.current.readOnly = "";
     this.setState({
-      disablePassword: false,
-      passvalue: "abc",
+      disablePassword: "",
     });
   };
 
   handleOnBlurPassword = () => {
     this.setState({
-      disablePassword: true,
+      disablePassword: "readonly",
     });
   };
 
@@ -77,7 +75,6 @@ class SignIn extends React.Component {
               type="password"
               ref={this.textInput}
               readOnly={this.state.disablePassword}
-              ignoreReadOnly={!this.state.disablePassword}
               onFocus={this.handleOnFocusPassword}
               onBlur={this.handleOnBlurPassword}
               value={this.state.password}
