@@ -12,6 +12,7 @@ class SignIn extends React.Component {
   constructor(props) {
     super(props);
 
+    this.passwordInput = React.createRef();
     this.state = {
       email: "",
       password: "",
@@ -23,6 +24,13 @@ class SignIn extends React.Component {
     this.setState({
       disablePassword: false,
     });
+  };
+
+  selectTextInputForSafariIos = () => {
+    this.setState({
+      disablePassword: false,
+    });
+    this.passwordInput.current.focus();
   };
 
   handleOnBlurPassword = () => {
@@ -71,8 +79,10 @@ class SignIn extends React.Component {
               className="form-input"
               name="password"
               type="password"
+              ref={this.passwordInput}
               readOnly={this.state.disablePassword}
-              onClick={this.handleOnFocusPassword}
+              onClick={this.selectTextInputForSafariIos}
+              onFocus={this.handleOnFocusPassword}
               onBlur={this.handleOnBlurPassword}
               value={this.state.password}
               onChange={this.handleChange}
@@ -85,7 +95,7 @@ class SignIn extends React.Component {
                   this.state.password.length ? "shrink" : ""
                 } form-input-label`}
               >
-                {"Password3"}
+                {"PasswordSafari"}
               </label>
             ) : null}
           </div>
