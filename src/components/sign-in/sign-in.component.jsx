@@ -72,7 +72,7 @@ class SignIn extends React.Component {
               name="password"
               type="password"
               readOnly={this.state.disablePassword}
-              onFocus={setTimeout(this.handleOnFocusPassword, 0)}
+              onClick={this.handleOnFocusPassword}
               onBlur={this.handleOnBlurPassword}
               value={this.state.password}
               onChange={this.handleChange}
@@ -85,7 +85,7 @@ class SignIn extends React.Component {
                   this.state.password.length ? "shrink" : ""
                 } form-input-label`}
               >
-                {"Password2"}
+                {"Password3"}
               </label>
             ) : null}
           </div>
