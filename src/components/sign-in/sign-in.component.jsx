@@ -12,46 +12,52 @@ class SignIn extends React.Component {
   constructor(props) {
     super(props);
     this.textInput = React.createRef();
+    this.blurFocus = "";
     this.state = {
       email: "",
       password: "",
-      blurFocus: "",
       disablePassword: true,
     };
   }
 
   handleOnFocusPassword = () => {
-    console.log("focus called");
-    if (this.state.blurFocus === "blur") {
-      return;
+    console.log("on focus called");
+    if (this.state.disablePassword == true) {
+      console.log("on focus true is disable pass");
+      this.setState(
+        {
+          disablePassword: false,
+        },
+        () => {
+          this.blurFocus = "focus";
+          console.log(
+            "on focus set state called : " + this.state.disablePassword
+          );
+          this.textInput.current.blur();
+          this.blurFocus = "";
+          console.log("on focus after blur");
+          this.textInput.current.readOnly = false;
+          console.log("on focus before focus");
+          this.textInput.current.focus();
+          console.log("on focus after focus");
+        }
+      );
     }
-    if (this.state.disablePassword == false) {
-      return;
-    }
-    this.setState(
-      {
-        disablePassword: false,
-        blurFocus: "focus",
-      },
-      () => {
-        this.textInput.current.blur();
-        this.textInput.current.focus();
-      }
-    );
   };
 
   handleOnBlurPassword = () => {
-    console.log("blur called");
-    if (this.state.blurFocus === "focus") {
+    console.log("inside handle on blue");
+    if (this.blurFocus === "focus") {
+      console.log("inside on blur with blurfocus as focus");
       return;
     }
-    if (this.state.disablePassword == true) {
-      return;
+    console.log("before checking disable pass");
+    if (this.state.disablePassword == false) {
+      console.log("inside on blur before set status");
+      this.setState({
+        disablePassword: true,
+      });
     }
-    this.setState({
-      disablePassword: true,
-      blurFocus: "blur",
-    });
   };
 
   handleSubmit = async (event) => {
