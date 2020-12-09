@@ -26,13 +26,6 @@ class SignIn extends React.Component {
     });
   };
 
-  selectTextInputForSafariIos = () => {
-    this.setState({
-      disablePassword: false,
-    });
-    this.passwordInput.current.setSelectionRange(0, 9999);
-  };
-
   handleOnBlurPassword = () => {
     this.setState({
       disablePassword: true,
@@ -81,8 +74,7 @@ class SignIn extends React.Component {
               type="password"
               ref={this.passwordInput}
               readOnly={this.state.disablePassword}
-              onClick={this.selectTextInputForSafariIos}
-              onFocus={this.handleOnFocusPassword}
+              onFocus={setTimeout(this.handleOnFocusPassword, 1)}
               onBlur={this.handleOnBlurPassword}
               value={this.state.password}
               onChange={this.handleChange}
