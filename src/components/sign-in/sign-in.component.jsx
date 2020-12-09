@@ -92,7 +92,7 @@ class SignIn extends React.Component {
                   this.state.password.length ? "shrink" : ""
                 } form-input-label`}
               >
-                {"PasswordReadOnly"}
+                {"PasswordReadOnly01"}
               </label>
             ) : null}
           </div>
