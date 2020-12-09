@@ -11,8 +11,7 @@ import "./sign-in.styles.scss";
 class SignIn extends React.Component {
   constructor(props) {
     super(props);
-
-    this.passwordInput = React.createRef();
+    this.textInput = React.createRef();
     this.state = {
       email: "",
       password: "",
@@ -24,6 +23,7 @@ class SignIn extends React.Component {
     this.setState({
       disablePassword: false,
     });
+    this.textInput.current.focus();
   };
 
   handleOnBlurPassword = () => {
@@ -72,13 +72,9 @@ class SignIn extends React.Component {
               className="form-input"
               name="password"
               type="password"
+              ref={this.textInput}
               readOnly={this.state.disablePassword}
-              onFocus={(event) => {
-                setTimeout(event.target.select.bind(event.target), 2);
-                this.setState({
-                  disablePassword: false,
-                });
-              }}
+              onFocus={this.handleOnFocusPassword}
               onBlur={this.handleOnBlurPassword}
               value={this.state.password}
               onChange={this.handleChange}
@@ -92,7 +88,7 @@ class SignIn extends React.Component {
                   this.state.password.length ? "shrink" : ""
                 } form-input-label`}
               >
-                {"PasswordAsyncfinal"}
+                {"PasswordAsy"}
               </label>
             ) : null}
           </div>
