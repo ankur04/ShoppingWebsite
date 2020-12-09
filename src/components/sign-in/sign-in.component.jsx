@@ -22,6 +22,7 @@ class SignIn extends React.Component {
 
   handleOnFocusPassword = () => {
     this.textInput.current.focus();
+    this.textInput.current.ignoreReadOnly = true;
     this.setState({
       disablePassword: false,
       passvalue: "abc",
