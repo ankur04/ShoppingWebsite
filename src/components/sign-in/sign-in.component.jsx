@@ -68,7 +68,7 @@ class SignIn extends React.Component {
             label="email"
             required
           />
-          <h1>{this.state.passvalue}</h1>
+          <h1>Pass - {this.state.disablePassword.toString()}</h1>
           <div className="group">
             <input
               className="form-input"
