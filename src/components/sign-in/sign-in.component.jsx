@@ -77,7 +77,12 @@ class SignIn extends React.Component {
               readOnly={this.state.disablePassword}
               onFocus={(event) => {
                 const target = event.target;
-                setTimeout(() => this.handleOnFocusPassword(target), 0);
+                setTimeout(() => {
+                  this.setState({
+                    disablePassword: false,
+                  });
+                  target.setSelectionRange(0, 9999);
+                }, 0);
               }}
               onBlur={this.handleOnBlurPassword}
               value={this.state.password}
@@ -91,7 +96,7 @@ class SignIn extends React.Component {
                   this.state.password.length ? "shrink" : ""
                 } form-input-label`}
               >
-                {"PasswordAsync"}
+                {"PasswordAsync12"}
               </label>
             ) : null}
           </div>
