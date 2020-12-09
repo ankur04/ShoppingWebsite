@@ -35,7 +35,6 @@ class SignIn extends React.Component {
       },
       () => {
         this.textInput.current.blur();
-        this.textInput.current.readOnly = false;
         this.textInput.current.focus();
       }
     );
