@@ -15,15 +15,17 @@ class SignIn extends React.Component {
     this.state = {
       email: "",
       password: "",
+      passvalue: "",
       disablePassword: true,
     };
   }
 
   handleOnFocusPassword = () => {
+    this.textInput.current.focus();
     this.setState({
       disablePassword: false,
+      passvalue: "abc",
     });
-    this.textInput.current.focus();
   };
 
   handleOnBlurPassword = () => {
@@ -66,7 +68,7 @@ class SignIn extends React.Component {
             label="email"
             required
           />
-
+          <h1>{this.state.passvalue}</h1>
           <div className="group">
             <input
               className="form-input"
