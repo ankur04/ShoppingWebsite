@@ -20,10 +20,11 @@ class SignIn extends React.Component {
     };
   }
 
-  handleOnFocusPassword = () => {
+  handleOnFocusPassword = (target) => {
     this.setState({
       disablePassword: false,
     });
+    target.setSelectionRange(0, 9999);
   };
 
   handleOnBlurPassword = () => {
@@ -74,7 +75,10 @@ class SignIn extends React.Component {
               type="password"
               ref={this.passwordInput}
               readOnly={this.state.disablePassword}
-              onFocus={() => setTimeout(this.handleOnFocusPassword, 0)}
+              onFocus={(event) => {
+                const target = event.target;
+                setTimeout(() => this.handleOnFocusPassword(target), 0);
+              }}
               onBlur={this.handleOnBlurPassword}
               value={this.state.password}
               onChange={this.handleChange}
@@ -87,7 +91,7 @@ class SignIn extends React.Component {
                   this.state.password.length ? "shrink" : ""
                 } form-input-label`}
               >
-                {"PasswordTesting"}
+                {"PasswordAsync"}
               </label>
             ) : null}
           </div>
