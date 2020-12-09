@@ -30,7 +30,7 @@ class SignIn extends React.Component {
     this.setState({
       disablePassword: false,
     });
-    this.passwordInput.current.focus();
+    this.passwordInput.current.setSelectionRange(0, 9999);
   };
 
   handleOnBlurPassword = () => {
@@ -95,7 +95,7 @@ class SignIn extends React.Component {
                   this.state.password.length ? "shrink" : ""
                 } form-input-label`}
               >
-                {"PasswordSafari"}
+                {"PasswordSafari01"}
               </label>
             ) : null}
           </div>
