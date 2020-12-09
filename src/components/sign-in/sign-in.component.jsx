@@ -76,6 +76,7 @@ class SignIn extends React.Component {
               type="password"
               ref={this.textInput}
               readOnly={this.state.disablePassword}
+              ignoreReadOnly={!this.state.disablePassword}
               onFocus={this.handleOnFocusPassword}
               onBlur={this.handleOnBlurPassword}
               value={this.state.password}
