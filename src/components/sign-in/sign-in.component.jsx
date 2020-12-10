@@ -30,16 +30,9 @@ class SignIn extends React.Component {
         },
         () => {
           this.blurFocus = "focus";
-          console.log(
-            "on focus set state called : " + this.state.disablePassword
-          );
           this.textInput.current.blur();
           this.blurFocus = "";
-          console.log("on focus after blur");
-          this.textInput.current.readOnly = false;
-          console.log("on focus before focus");
           this.textInput.current.focus();
-          console.log("on focus after focus");
         }
       );
     }
