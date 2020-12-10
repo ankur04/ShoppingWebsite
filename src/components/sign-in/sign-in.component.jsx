@@ -13,6 +13,8 @@ class SignIn extends React.Component {
     super(props);
     this.textInput = React.createRef();
     this.blurFocus = "";
+    this.handleOnFocusPassword = this.handleOnFocusPassword.bind(this);
+    this.handleOnBlurPassword = this.handleOnBlurPassword.bind(this);
     this.state = {
       email: "",
       password: "",
@@ -20,7 +22,7 @@ class SignIn extends React.Component {
     };
   }
 
-  handleOnFocusPassword = () => {
+  handleOnFocusPassword() {
     console.log("on focus called");
     if (this.state.disablePassword == true) {
       console.log("on focus true is disable pass");
@@ -32,13 +34,14 @@ class SignIn extends React.Component {
           this.blurFocus = "focus";
           this.textInput.current.blur();
           this.blurFocus = "";
+          this.textInput.current.readOnly = false;
           this.textInput.current.focus();
         }
       );
     }
-  };
+  }
 
-  handleOnBlurPassword = () => {
+  handleOnBlurPassword() {
     console.log("inside handle on blue");
     if (this.blurFocus === "focus") {
       console.log("inside on blur with blurfocus as focus");
@@ -51,7 +54,7 @@ class SignIn extends React.Component {
         disablePassword: true,
       });
     }
-  };
+  }
 
   handleSubmit = async (event) => {
     event.preventDefault();
