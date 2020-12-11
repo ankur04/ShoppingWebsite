@@ -11,29 +11,30 @@ import "./sign-in.styles.scss";
 class SignIn extends React.Component {
   constructor(props) {
     super(props);
-    this.blurFocus = "";
     this.handleOnFocusPassword = this.handleOnFocusPassword.bind(this);
     this.handleOnBlurPassword = this.handleOnBlurPassword.bind(this);
     this.state = {
       email: "",
       password: "",
       disablePassword: true,
+      blurFocus: "blur",
     };
   }
 
   handleOnFocusPassword() {
     console.log("on focus called");
+    if (this.state.blurFocus === "focus") {
+      this.setState({ blurFocus: "blur" });
+    }
     if (this.state.disablePassword == true) {
       console.log("on focus true is disable pass");
       this.setState(
         {
           disablePassword: false,
+          blurFocus: "focus",
         },
         () => {
-          this.blurFocus = "focus";
           document.getElementById("PASSWORD").blur();
-          this.blurFocus = "";
-          document.getElementById("PASSWORD").focus();
         }
       );
     }
@@ -41,8 +42,10 @@ class SignIn extends React.Component {
 
   handleOnBlurPassword() {
     console.log("inside handle on blue");
-    if (this.blurFocus === "focus") {
+    console.log(this.state.blurFocus);
+    if (this.state.blurFocus === "focus") {
       console.log("inside on blur with blurfocus as focus");
+      document.getElementById("PASSWORD").focus();
       return;
     }
     console.log("before checking disable pass");
