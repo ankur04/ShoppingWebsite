@@ -11,7 +11,6 @@ import "./sign-in.styles.scss";
 class SignIn extends React.Component {
   constructor(props) {
     super(props);
-    this.textInput = React.createRef();
     this.blurFocus = "";
     this.handleOnFocusPassword = this.handleOnFocusPassword.bind(this);
     this.handleOnBlurPassword = this.handleOnBlurPassword.bind(this);
@@ -32,10 +31,9 @@ class SignIn extends React.Component {
         },
         () => {
           this.blurFocus = "focus";
-          this.textInput.current.blur();
+          document.getElementById("PASSWORD").blur();
           this.blurFocus = "";
-          this.textInput.current.readOnly = false;
-          this.textInput.current.focus();
+          document.getElementById("PASSWORD").focus();
         }
       );
     }
@@ -95,8 +93,8 @@ class SignIn extends React.Component {
             <input
               className="form-input"
               name="password"
+              id="PASSWORD"
               type="password"
-              ref={this.textInput}
               readOnly={this.state.disablePassword}
               onFocus={this.handleOnFocusPassword}
               onBlur={this.handleOnBlurPassword}
